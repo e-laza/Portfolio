@@ -1,35 +1,42 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const mainLinks = [
-  { label: "About me", href: "/about" },
-  { label: "Playing", href: "#" },
-  { label: "Illustration", href: "/illustration" },
-  { label: "AI", href: "/ai" },
-  { label: "Writings", href: "/writings" }
+  { label: 'About me', href: '/about' },
+  { label: 'Playing', href: '#' },
+  { label: 'Illustration', href: '/illustration' },
+  { label: 'AI', href: '/ai' },
+  { label: 'Writings', href: '/writings' },
 ];
 
 const bottomLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Behance", href: "https://behance.net" }
+  { label: 'LinkedIn', href: 'https://linkedin.com' },
+  { label: 'GitHub', href: 'https://github.com' },
+  { label: 'Behance', href: 'https://behance.net' },
 ];
 ---
+
 <BaseLayout title="Home" bodyClass="home">
   <div class="eyes-background" aria-hidden="true"></div>
   <section class="home">
     <div class="home-card">
       <nav class="home-main">
-        {mainLinks.map((link) => (
-          <a class="home-link" href={link.href}>{link.label}</a>
-        ))}
+        {
+          mainLinks.map((link) => (
+            <a class="home-link" href={link.href}>
+              {link.label}
+            </a>
+          ))
+        }
       </nav>
       <nav class="home-bottom">
-        {bottomLinks.map((link) => (
-          <a class="home-link" href={link.href} target="_blank" rel="noreferrer">
-            {link.label}
-          </a>
-        ))}
+        {
+          bottomLinks.map((link) => (
+            <a class="home-link" href={link.href} target="_blank" rel="noreferrer">
+              {link.label}
+            </a>
+          ))
+        }
       </nav>
     </div>
   </section>
@@ -97,7 +104,9 @@ const bottomLinks = [
 
   .home-link {
     font-weight: 700;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    transition:
+      transform 0.15s ease,
+      opacity 0.15s ease;
   }
 
   .home-link:hover {

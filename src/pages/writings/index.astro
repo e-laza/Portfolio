@@ -1,19 +1,22 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 
-const entries = await getCollection("writings");
+const entries = await getCollection('writings');
 ---
+
 <BaseLayout title="Writings">
   <section class="list-page">
     <h1>Writings</h1>
     <ul>
-      {entries.map((entry) => (
-        <li>
-          <a href={`/writings/${entry.slug}`}>{entry.data.title}</a>
-          {entry.data.description && <p>{entry.data.description}</p>}
-        </li>
-      ))}
+      {
+        entries.map((entry) => (
+          <li>
+            <a href={`/writings/${entry.slug}`}>{entry.data.title}</a>
+            {entry.data.description && <p>{entry.data.description}</p>}
+          </li>
+        ))
+      }
     </ul>
   </section>
 </BaseLayout>

@@ -4,16 +4,16 @@ const CONFIG = {
   presets: [
     { minWidth: 1680, cols: 5, rows: 4 },
     { minWidth: 1280, cols: 4, rows: 3 },
-    { minWidth: 1024, cols: 3, rows: 3 }
+    { minWidth: 1024, cols: 3, rows: 3 },
   ],
-  selectors: { eyesContainer: ".eyes-background" },
-  enableDebug: false
+  selectors: { eyesContainer: '.eyes-background' },
+  enableDebug: false,
 };
 
 const container = document.querySelector(CONFIG.selectors.eyesContainer);
 if (!container) {
   if (CONFIG.enableDebug) {
-    console.warn("eyes-grid: container not found");
+    console.warn('eyes-grid: container not found');
   }
 } else {
   const template = `
@@ -42,13 +42,12 @@ if (!container) {
   let mouseY = 0;
   let hasMouse = false;
 
-  const parseVar = (value) => Number.parseFloat(String(value).replace("px", "")) || 0;
+  const parseVar = (value) => Number.parseFloat(String(value).replace('px', '')) || 0;
 
-  const getPreset = (width) =>
-    CONFIG.presets.find((preset) => width >= preset.minWidth) || null;
+  const getPreset = (width) => CONFIG.presets.find((preset) => width >= preset.minWidth) || null;
 
   const clearGrid = () => {
-    container.innerHTML = "";
+    container.innerHTML = '';
     eyes = [];
   };
 
@@ -60,8 +59,8 @@ if (!container) {
     }
 
     const styles = getComputedStyle(document.documentElement);
-    const pagePad = parseVar(styles.getPropertyValue("--page-pad"));
-    const gap = parseVar(styles.getPropertyValue("--grid-gap"));
+    const pagePad = parseVar(styles.getPropertyValue('--page-pad'));
+    const gap = parseVar(styles.getPropertyValue('--grid-gap'));
 
     const preset = getPreset(window.innerWidth);
     if (!preset) {
@@ -88,7 +87,7 @@ if (!container) {
     for (let row = 0; row < preset.rows; row += 1) {
       for (let col = 0; col < preset.cols; col += 1) {
         const uid = `i${index}`;
-        const wrapper = document.createElement("div");
+        const wrapper = document.createElement('div');
         wrapper.innerHTML = template.replace(/__UID__/g, uid).trim();
         const svg = wrapper.firstElementChild;
         if (!svg) continue;
@@ -96,14 +95,14 @@ if (!container) {
         const x = startX + col * (eyeSize + gap);
         const y = startY + row * (eyeSize + gap);
 
-        svg.style.position = "absolute";
+        svg.style.position = 'absolute';
         svg.style.left = `${x}px`;
         svg.style.top = `${y}px`;
         svg.style.width = `${eyeSize}px`;
         svg.style.height = `${eyeSize}px`;
-        svg.style.pointerEvents = "none";
+        svg.style.pointerEvents = 'none';
 
-        const irisEl = svg.querySelector(".iris");
+        const irisEl = svg.querySelector('.iris');
         container.appendChild(svg);
 
         eyes.push({
@@ -115,7 +114,7 @@ if (!container) {
           row,
           col,
           el: svg,
-          irisEl
+          irisEl,
         });
 
         index += 1;
@@ -125,7 +124,7 @@ if (!container) {
 
   buildGrid();
 
-  window.addEventListener("mousemove", (event) => {
+  window.addEventListener('mousemove', (event) => {
     mouseX = event.clientX;
     mouseY = event.clientY;
     hasMouse = true;
@@ -134,7 +133,7 @@ if (!container) {
   // TODO: GSAP integration – iris follows mouse
 
   let resizeTimer = null;
-  window.addEventListener("resize", () => {
+  window.addEventListener('resize', () => {
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(buildGrid, CONFIG.grid.resizeDebounceMs);
   });

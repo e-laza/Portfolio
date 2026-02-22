@@ -1,20 +1,20 @@
-import { gsap } from "gsap";
+import { gsap } from 'gsap';
 
 const CONFIG = {
   selectors: {
-    svg: ".logo-eye__svg",
-    open: ".eye-open",
-    closed: ".eye-closed"
+    svg: '.logo-eye__svg',
+    open: '.eye-open',
+    closed: '.eye-closed',
   },
-  blink: { dur: 0.13, hold: 0.09, ease: "power3.inOut" },
-  media: { hoverCapable: "(hover: hover) and (pointer: fine)" },
-  enableDebug: false
+  blink: { dur: 0.13, hold: 0.09, ease: 'power3.inOut' },
+  media: { hoverCapable: '(hover: hover) and (pointer: fine)' },
+  enableDebug: false,
 };
 
 const svg = document.querySelector(CONFIG.selectors.svg);
 if (!svg) {
   if (CONFIG.enableDebug) {
-    console.warn("logo-eye: svg not found");
+    console.warn('logo-eye: svg not found');
   }
 } else {
   const open = svg.querySelector(CONFIG.selectors.open);
@@ -22,7 +22,7 @@ if (!svg) {
 
   if (!open || !closed) {
     if (CONFIG.enableDebug) {
-      console.warn("logo-eye: missing open/closed groups");
+      console.warn('logo-eye: missing open/closed groups');
     }
   } else {
     gsap.set(open, { opacity: 1 });
@@ -33,14 +33,14 @@ if (!svg) {
       tl.to(open, {
         opacity: 0,
         duration: CONFIG.blink.dur,
-        ease: CONFIG.blink.ease
+        ease: CONFIG.blink.ease,
       })
         .to(
           closed,
           {
             opacity: 1,
             duration: CONFIG.blink.dur,
-            ease: CONFIG.blink.ease
+            ease: CONFIG.blink.ease,
           },
           0
         )
@@ -50,25 +50,25 @@ if (!svg) {
           {
             opacity: 1,
             duration: CONFIG.blink.dur,
-            ease: CONFIG.blink.ease
+            ease: CONFIG.blink.ease,
           },
-          ">"
+          '>'
         )
         .to(
           closed,
           {
             opacity: 0,
             duration: CONFIG.blink.dur,
-            ease: CONFIG.blink.ease
+            ease: CONFIG.blink.ease,
           },
-          "<"
+          '<'
         );
     };
 
     requestAnimationFrame(() => blink());
 
     const mql = window.matchMedia(CONFIG.media.hoverCapable);
-    const homeAutoBlinkMql = window.matchMedia("(max-width: 1023px)");
+    const homeAutoBlinkMql = window.matchMedia('(max-width: 1023px)');
     let hoverTimer = null;
     let isHovering = false;
     let homeBlinkTimer = null;
@@ -94,11 +94,11 @@ if (!svg) {
     };
 
     if (mql.matches) {
-      svg.addEventListener("mouseenter", onMouseEnter);
-      svg.addEventListener("mouseleave", onMouseLeave);
+      svg.addEventListener('mouseenter', onMouseEnter);
+      svg.addEventListener('mouseleave', onMouseLeave);
     }
 
-    if (document.body.classList.contains("home") && homeAutoBlinkMql.matches) {
+    if (document.body.classList.contains('home') && homeAutoBlinkMql.matches) {
       homeBlinkTimer = window.setInterval(() => blink(), 4000);
     }
   }
