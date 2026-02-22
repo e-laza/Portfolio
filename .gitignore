@@ -1,0 +1,7 @@
+*.tmp
+~ai-*.tmp
+
+
+tmp__
+
+node_modules
