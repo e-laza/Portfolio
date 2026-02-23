@@ -41,12 +41,12 @@ svg {
 
 :root {
   --u: clamp(8px, 0.6vw, 12px);
-  --main-font: clamp(28px, 2.2vw, 44px);
-  --bottom-font: clamp(18px, 1.6vw, 32px);
+  --main-font: clamp(20px, 1.55vw, 30px);
+  --bottom-font: clamp(14px, 1.15vw, 22px);
   --page-pad: clamp(20px, 4vw, 80px);
   --grid-gap: clamp(20px, 1.8vw, 40px);
   --grid-gap-min: 16px;
-  --card-size: clamp(520px, 38vw, 700px);
+  --card-size: clamp(460px, 32vw, 580px);
   --card-pad: calc(var(--u) * 5);
   --main-gap: calc(var(--u) * 4);
   --bottom-inset: calc(var(--u) * 4);
@@ -107,7 +107,7 @@ svg {
 }
 
 .logo-eye__svg {
-  height: 24px;
+  height: 56px;
   width: auto;
 }
 

@@ -93,7 +93,7 @@ const bottomLinks = [
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    width: min(100%, 520px);
+    width: 100%;
     height: auto;
     aspect-ratio: auto;
     gap: calc(var(--u) * 3);
@@ -136,6 +136,10 @@ const bottomLinks = [
 
   .home-link:hover {
     opacity: 0.85;
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 0.14em;
+    text-underline-offset: 0.28em;
   }
 
   @media (min-width: 1024px) {
