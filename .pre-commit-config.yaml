@@ -2,10 +2,11 @@ default-stages:
   - pre-commit
 default_install_hook_types:
   - pre-commit
+  - commit-msg
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -14,3 +15,9 @@ repos:
       - id: check-json
       - id: check-added-large-files
         args: ['--maxkb=512']
+
+  -   repo: https://github.com/jorisroovers/gitlint
+      rev:  v0.19.1
+      hooks:
+      - id: gitlint
+        stage: [commit-msg]

@@ -1,0 +1,20 @@
+[general]
+ignore=body-min-length, body-is-missing
+contrib=contrib-title-conventional-commits
+regex-style-search=True
+fail-without-commits=True
+
+[ignore-by-title]
+ignore=contrib-title-conventional-commits,body-is-missing
+
+[title-max-length]
+line-length=120
+
+[title-min-length]
+min-length=10
+
+[body-max-line-length]
+line-length=120
+
+[contrib-title-conventional-commits]
+types=fix,feat,chore,docs,style,refactor,perf,test,revert,ci,build,feature
