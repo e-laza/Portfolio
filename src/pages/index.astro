@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LogoEye from '../components/LogoEye.astro';
 
 const mainLinks = [
   { label: 'About me', href: '/about' },
@@ -10,9 +11,8 @@ const mainLinks = [
 ];
 
 const bottomLinks = [
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'Behance', href: 'https://behance.net' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ewa-lazar/' },
+  { label: 'GitHub', href: 'https://github.com/e-laza' },
 ];
 ---
 
@@ -20,6 +20,9 @@ const bottomLinks = [
   <div class="eyes-background" aria-hidden="true"></div>
   <section class="home">
     <div class="home-card">
+      <div class="home-logo" aria-hidden="true">
+        <LogoEye />
+      </div>
       <nav class="home-main">
         {
           mainLinks.map((link) => (
@@ -46,6 +49,19 @@ const bottomLinks = [
 <style>
   :global(body.home) {
     background: #ffffff;
+    overflow: hidden;
+  }
+
+  :global(body.home .site-header) {
+    display: none;
+  }
+
+  :global(body.home .page) {
+    min-height: 100vh;
+    padding-left: var(--page-pad);
+    padding-right: var(--page-pad);
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .home {
@@ -86,12 +102,21 @@ const bottomLinks = [
     padding: 0;
   }
 
+  .home-logo {
+    display: none;
+  }
+
+  .home-logo :global(.logo-eye__svg) {
+    height: 48px;
+  }
+
   .home-main {
     display: grid;
     gap: var(--main-gap);
     font-size: var(--main-font);
     line-height: 1.05;
     letter-spacing: -0.02em;
+    margin-bottom: calc(var(--u) * 8);
   }
 
   .home-bottom {
@@ -110,7 +135,6 @@ const bottomLinks = [
   }
 
   .home-link:hover {
-    transform: translateY(-2px);
     opacity: 0.85;
   }
 
@@ -122,6 +146,13 @@ const bottomLinks = [
       background: #f8f5ef;
       box-shadow: var(--shadow);
       gap: 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .home-logo {
+      display: block;
+      margin-bottom: calc(var(--u) * 9);
     }
   }
 

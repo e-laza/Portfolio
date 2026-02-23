@@ -43,11 +43,12 @@ svg {
   --u: clamp(8px, 0.6vw, 12px);
   --main-font: clamp(28px, 2.2vw, 44px);
   --bottom-font: clamp(18px, 1.6vw, 32px);
-  --page-pad: clamp(40px, 4vw, 80px);
+  --page-pad: clamp(20px, 4vw, 80px);
   --grid-gap: clamp(20px, 1.8vw, 40px);
+  --grid-gap-min: 16px;
   --card-size: clamp(520px, 38vw, 700px);
   --card-pad: calc(var(--u) * 5);
-  --main-gap: calc(var(--u) * 2);
+  --main-gap: calc(var(--u) * 4);
   --bottom-inset: calc(var(--u) * 4);
   --shadow: 4px 5px 15px 6px rgba(0, 0, 0, 0.18);
 

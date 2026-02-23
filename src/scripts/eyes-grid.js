@@ -2,9 +2,9 @@ const CONFIG = {
   breakpoints: { desktopMinWidth: 1024 },
   grid: { minAcceptableEyeSize: 140, resizeDebounceMs: 150 },
   presets: [
-    { minWidth: 1680, cols: 5, rows: 4 },
-    { minWidth: 1280, cols: 4, rows: 3 },
-    { minWidth: 1024, cols: 3, rows: 3 },
+    { minWidth: 1680, cols: 6, rows: 4 },
+    { minWidth: 1280, cols: 5, rows: 4 },
+    { minWidth: 1024, cols: 4, rows: 4 },
   ],
   selectors: { eyesContainer: '.eyes-background' },
   enableDebug: false,
@@ -59,29 +59,43 @@ if (!container) {
     }
 
     const styles = getComputedStyle(document.documentElement);
-    const pagePad = parseVar(styles.getPropertyValue('--page-pad'));
+    const pageEl = document.querySelector('.page');
+    const pageStyles = pageEl ? getComputedStyle(pageEl) : null;
+    const pagePadLeft = pageStyles ? parseVar(pageStyles.paddingLeft) : 0;
+    const pagePadRight = pageStyles ? parseVar(pageStyles.paddingRight) : 0;
+    const pagePadTop = pageStyles ? parseVar(pageStyles.paddingTop) : 0;
+    const pagePadBottom = pageStyles ? parseVar(pageStyles.paddingBottom) : 0;
+    const fallbackPad = parseVar(styles.getPropertyValue('--page-pad'));
+    const padLeft = pagePadLeft || fallbackPad;
+    const padRight = pagePadRight || fallbackPad;
+    const padTop = pagePadTop || fallbackPad;
+    const padBottom = pagePadBottom || fallbackPad;
     const gap = parseVar(styles.getPropertyValue('--grid-gap'));
+    const minGap = parseVar(styles.getPropertyValue('--grid-gap-min')) || 16;
+    const gapX = Math.max(minGap, gap);
+    const gapY = Math.max(minGap, gap);
 
     const preset = getPreset(window.innerWidth);
     if (!preset) {
       return;
     }
 
-    const aw = Math.max(0, window.innerWidth - pagePad * 2);
-    const ah = Math.max(0, window.innerHeight - pagePad * 2);
-    const eyeSize = Math.min(
-      (aw - (preset.cols - 1) * gap) / preset.cols,
-      (ah - (preset.rows - 1) * gap) / preset.rows
-    );
+    const availableWidth = Math.max(0, window.innerWidth - padLeft - padRight);
+    const availableHeight = Math.max(0, window.innerHeight - padTop - padBottom);
+    const maxEyeSizeByWidth = (availableWidth - (preset.cols - 1) * gapX) / preset.cols;
+    const maxEyeSizeByHeight = (availableHeight - (preset.rows - 1) * gapY) / preset.rows;
+    const eyeSize = Math.min(maxEyeSizeByWidth, maxEyeSizeByHeight);
+    const resolvedGapX =
+      preset.cols > 1 ? (availableWidth - eyeSize * preset.cols) / (preset.cols - 1) : 0;
+    const resolvedGapY =
+      preset.rows > 1 ? (availableHeight - eyeSize * preset.rows) / (preset.rows - 1) : 0;
 
     if (eyeSize < CONFIG.grid.minAcceptableEyeSize) {
       return;
     }
 
-    const gridWidth = eyeSize * preset.cols + gap * (preset.cols - 1);
-    const gridHeight = eyeSize * preset.rows + gap * (preset.rows - 1);
-    const startX = (window.innerWidth - gridWidth) / 2;
-    const startY = (window.innerHeight - gridHeight) / 2;
+    const startX = padLeft;
+    const startY = padTop;
 
     let index = 0;
     for (let row = 0; row < preset.rows; row += 1) {
@@ -92,8 +106,8 @@ if (!container) {
         const svg = wrapper.firstElementChild;
         if (!svg) continue;
 
-        const x = startX + col * (eyeSize + gap);
-        const y = startY + row * (eyeSize + gap);
+        const x = startX + col * (eyeSize + resolvedGapX);
+        const y = startY + row * (eyeSize + resolvedGapY);
 
         svg.style.position = 'absolute';
         svg.style.left = `${x}px`;
