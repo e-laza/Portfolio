@@ -5,3 +5,5 @@
 tmp__
 
 node_modules
+
+.astro/
