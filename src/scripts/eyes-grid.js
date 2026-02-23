@@ -1,3 +1,5 @@
+import { gsap } from 'gsap';
+
 const CONFIG = {
   breakpoints: { desktopMinWidth: 1024 },
   grid: { minAcceptableEyeSize: 140, resizeDebounceMs: 150 },
@@ -38,6 +40,7 @@ if (!container) {
   `;
 
   let eyes = [];
+  let rafId = null;
   let mouseX = 0;
   let mouseY = 0;
   let hasMouse = false;
@@ -119,6 +122,9 @@ if (!container) {
         const irisEl = svg.querySelector('.iris');
         container.appendChild(svg);
 
+        const setX = gsap.quickSetter(irisEl, 'x', 'px');
+        const setY = gsap.quickSetter(irisEl, 'y', 'px');
+
         eyes.push({
           x,
           y,
@@ -129,6 +135,10 @@ if (!container) {
           col,
           el: svg,
           irisEl,
+          setX,
+          setY,
+          currentX: 0,
+          currentY: 0,
         });
 
         index += 1;
@@ -144,7 +154,31 @@ if (!container) {
     hasMouse = true;
   });
 
-  // TODO: GSAP integration – iris follows mouse
+  const updateIris = () => {
+    rafId = window.requestAnimationFrame(updateIris);
+    if (!hasMouse) return;
+
+    for (const eye of eyes) {
+      if (!eye.irisEl) continue;
+
+      const dx = mouseX - eye.cx;
+      const dy = mouseY - eye.cy;
+      const distance = Math.hypot(dx, dy) || 1;
+      const maxOffsetX = eye.size * 0.30;
+      const maxOffsetY = eye.size * 0.18;
+      const targetX = (dx / distance) * maxOffsetX;
+      const targetY = (dy / distance) * maxOffsetY;
+      const ease = 0.08;
+
+      eye.currentX += (targetX - eye.currentX) * ease;
+      eye.currentY += (targetY - eye.currentY) * ease;
+
+      eye.setX(eye.currentX);
+      eye.setY(eye.currentY);
+    }
+  };
+
+  updateIris();
 
   let resizeTimer = null;
   window.addEventListener('resize', () => {
