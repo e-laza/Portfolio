@@ -16,7 +16,7 @@ const bottomLinks = [
 ];
 ---
 
-<BaseLayout title="Home" bodyClass="home">
+<BaseLayout title="Home" bodyClass="home" showHeader={false}>
   <div class="eyes-background" aria-hidden="true"></div>
   <section class="home">
     <div class="home-card">
@@ -52,12 +52,7 @@ const bottomLinks = [
     overflow: hidden;
   }
 
-  :global(body.home .site-header) {
-    display: none;
-  }
-
   :global(body.home .page) {
-    min-height: 100vh;
     padding-left: var(--page-pad);
     padding-right: var(--page-pad);
     padding-top: 0;
@@ -65,7 +60,7 @@ const bottomLinks = [
   }
 
   .home {
-    min-height: calc(100vh - 44px);
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,12 +74,7 @@ const bottomLinks = [
     z-index: 0;
     pointer-events: none;
     background: #69b8e0;
-  }
-
-  @media (max-width: 1023px) {
-    .eyes-background {
-      display: none;
-    }
+    display: none;
   }
 
   .home-card {
@@ -103,7 +93,8 @@ const bottomLinks = [
   }
 
   .home-logo {
-    display: none;
+    display: block;
+    margin-bottom: calc(var(--u) * 9);
   }
 
   .home-logo :global(.logo-eye__svg) {
@@ -142,7 +133,7 @@ const bottomLinks = [
     text-underline-offset: 0.28em;
   }
 
-  @media (min-width: 1024px) {
+  @media (--bp-desktop) {
     .home-card {
       width: var(--card-size);
       aspect-ratio: 1 / 1;
@@ -151,16 +142,18 @@ const bottomLinks = [
       box-shadow: var(--shadow);
       gap: 0;
     }
-  }
 
-  @media (max-width: 1024px) {
     .home-logo {
+      display: none;
+      margin-bottom: 0;
+    }
+
+    .eyes-background {
       display: block;
-      margin-bottom: calc(var(--u) * 9);
     }
   }
 
-  @media (max-width: 768px) {
+  @media (--bp-phone) {
     .home-bottom {
       flex-wrap: wrap;
     }

@@ -164,7 +164,7 @@ if (!container) {
       const dx = mouseX - eye.cx;
       const dy = mouseY - eye.cy;
       const distance = Math.hypot(dx, dy) || 1;
-      const maxOffsetX = eye.size * 0.30;
+      const maxOffsetX = eye.size * 0.3;
       const maxOffsetY = eye.size * 0.18;
       const targetX = (dx / distance) * maxOffsetX;
       const targetY = (dy / distance) * maxOffsetY;

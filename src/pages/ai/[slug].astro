@@ -1,37 +1,21 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentEntry from '../../components/ContentEntry.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'ai'>;
+}
 
 export async function getStaticPaths() {
   const entries = await getCollection('ai');
   return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { entry } = Astro.props as Props;
 ---
 
 <BaseLayout title={entry.data.title}>
-  <article class="entry-page">
-    <h1>{entry.data.title}</h1>
-    {entry.data.description && <p class="entry-desc">{entry.data.description}</p>}
-    <Content />
-  </article>
+  <ContentEntry entry={entry} />
 </BaseLayout>
-
-<style>
-  .entry-page {
-    max-width: 820px;
-    display: grid;
-    gap: calc(var(--u) * 2);
-    font-size: 20px;
-  }
-
-  .entry-page h1 {
-    font-size: clamp(32px, 3vw, 52px);
-  }
-
-  .entry-desc {
-    opacity: 0.7;
-  }
-</style>

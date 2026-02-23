@@ -177,23 +177,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     align-items: center;
     justify-items: center;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      'text'
-      'figure';
     width: 100%;
-    margin: 0;
-  }
-
-  .about-copy {
-    margin: 0;
   }
 
   .about-content {
     display: grid;
     gap: calc(var(--u) * 3);
-    justify-items: start;
-    grid-area: text;
+    justify-items: center;
     width: 100%;
+  }
+
+  .about-copy {
+    margin: 0;
   }
 
   .about-links {
@@ -201,13 +196,47 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     gap: calc(var(--u) * 2);
     justify-items: center;
     text-align: center;
-    margin-top: calc(var(--u) * 4);
+    color: #f45b69;
+    font-weight: 700;
   }
 
+  .about-links a {
+    color: inherit;
+  }
+
+  .about-links a:visited {
+    color: inherit;
+  }
+
+  .about-cv {
+    text-transform: lowercase;
+    justify-self: center;
+  }
+
+  .about-cv:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+  }
+
+  .about-cv:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+  }
+
+  .about-contact {
+    margin: 0;
+  }
+
+  .about-email {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+  }
 
   .about-figure {
     width: auto;
-    grid-area: figure;
   }
 
   .about-figure svg {
@@ -216,24 +245,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     height: 200px;
   }
 
-  @media (max-width: 768px) {
-    .about-content {
-      justify-items: center;
-    }
-
-    .about-links {
-      justify-items: center;
-      text-align: center;
-      width: 100%;
-    }
-
-    .about-cv {
-      justify-self: center;
-      text-align: center;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1023px) {
+  @media (min-width: 769px) {
     .text-page {
       max-width: 980px;
       text-align: left;
@@ -241,133 +253,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     .about-grid {
       grid-template-columns: auto auto;
-      grid-template-areas: 'text figure';
       align-items: end;
       justify-content: center;
       column-gap: calc(var(--u) * 6);
       row-gap: calc(var(--u) * 3);
       justify-items: start;
-      width: auto;
-      margin: 0 auto;
     }
 
     .about-content {
-      width: auto;
-      max-width: 465px;
       justify-items: start;
-    }
-
-    .about-copy {
-      text-align: left;
+      max-width: 465px;
     }
 
     .about-links {
       justify-items: start;
       text-align: left;
-      margin-top: calc(var(--u) * 3);
-      width: auto;
     }
 
     .about-cv {
       justify-self: start;
-      text-align: left;
-    }
-
-    .about-figure {
-      width: auto;
-      flex: 0 0 auto;
     }
 
     .about-figure svg {
       height: 450px;
     }
-  }
-
-  @media (min-width: 1024px) {
-    .text-page {
-      max-width: 980px;
-      text-align: left;
-    }
-
-    .about-grid {
-      grid-template-columns: auto auto;
-      grid-template-areas: 'text figure';
-      align-items: end;
-      justify-content: center;
-      column-gap: calc(var(--u) * 6);
-      row-gap: calc(var(--u) * 3);
-      justify-items: start;
-      width: auto;
-      margin: 0 auto;
-    }
-
-    .about-content {
-      width: auto;
-      max-width: 465px;
-      justify-items: start;
-    }
-
-    .about-copy {
-      text-align: left;
-    }
-
-    .about-links {
-      justify-items: start;
-      text-align: left;
-      margin-top: calc(var(--u) * 3);
-      width: auto;
-    }
-
-    .about-cv {
-      justify-self: start;
-      text-align: left;
-    }
-
-    .about-figure {
-      width: auto;
-      flex: 0 0 auto;
-    }
-
-    .about-figure svg {
-      height: 450px;
-    }
-  }
-
-  .about-cv {
-    color: #f45b69;
-    font-weight: 700;
-    text-transform: lowercase;
-  }
-
-  .about-cv:hover {
-    text-decoration-line: underline;
-    text-decoration-color: currentColor;
-    text-decoration: underline;
-    text-decoration-thickness: 0.12em;
-    text-underline-offset: 0.18em;
-  }
-
-  .about-cv:focus-visible {
-    text-decoration-line: underline;
-    text-decoration-color: currentColor;
-    text-decoration-thickness: 0.12em;
-    text-underline-offset: 0.18em;
-  }
-
-  .about-contact {
-    margin: 0;
-    color: #f45b69;
-    font-weight: 700;
-  }
-
-  .about-email {
-    color: #f45b69;
-    text-decoration: underline;
-    text-decoration-thickness: 0.12em;
-    text-underline-offset: 0.18em;
-  }
-
-  .about-cv:visited {
-    color: #f45b69;
   }
 </style>

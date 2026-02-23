@@ -2,7 +2,7 @@
 import '../styles/base.css';
 import LogoEye from '../components/LogoEye.astro';
 
-const { title = 'Portfolio', bodyClass = '' } = Astro.props;
+const { title = 'Portfolio', bodyClass = '', showHeader = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -21,9 +21,11 @@ const { title = 'Portfolio', bodyClass = '' } = Astro.props;
     />
   </head>
   <body class={bodyClass}>
-    <header class="site-header">
-      <LogoEye />
-    </header>
+    {showHeader && (
+      <header class="site-header">
+        <LogoEye />
+      </header>
+    )}
     <main class="page">
       <slot />
     </main>

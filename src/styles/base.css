@@ -14,6 +14,10 @@ body {
   height: 100%;
 }
 
+@custom-media --bp-phone (max-width: 768px);
+@custom-media --bp-tablet (min-width: 769px);
+@custom-media --bp-desktop (min-width: 1024px);
+
 body {
   font-family:
     'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
@@ -21,6 +25,9 @@ body {
   background: #ffffff;
   color: #032c75;
   line-height: 1.2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -94,12 +101,6 @@ svg {
   padding-top: 20px;
 }
 
-@media (min-width: 1024px) {
-  body.home .site-header {
-    display: none;
-  }
-}
-
 .logo-eye {
   display: inline-flex;
   align-items: center;
@@ -112,6 +113,6 @@ svg {
 }
 
 .page {
-  min-height: calc(100vh - 44px);
+  flex: 1;
   padding: var(--page-pad);
 }

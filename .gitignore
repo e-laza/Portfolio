@@ -7,3 +7,5 @@ tmp__
 node_modules
 
 .astro/
+
+TODO.md
