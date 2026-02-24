@@ -1,4 +1,4 @@
-import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js';
+import gsap from 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js';
 
 const CONFIG = {
   selectors: {
