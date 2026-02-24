@@ -23,6 +23,8 @@ const bottomLinks = [
       <div class="home-logo" aria-hidden="true">
         <LogoEye />
       </div>
+      <h1 class="home-title">Ewa Lazar</h1>
+      <p class="home-subtitle">Frontend Developer and Illustrator</p>
       <nav class="home-main">
         {
           mainLinks.map((link) => (
@@ -99,26 +101,41 @@ const bottomLinks = [
 
   .home-logo {
     display: block;
-    margin-bottom: calc(var(--u) * 9);
+    margin-bottom: calc(var(--u) * 3);
   }
 
   .home-logo :global(.logo-eye__svg) {
     height: 48px;
   }
 
+  .home-title {
+    color: #f45b69 !important;
+    font-size: clamp(18px, 1.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .home-subtitle {
+    color: #f45b69 !important;
+    font-size: clamp(14px, 1.2vw, 18px);
+    margin-top: calc(var(--u) * -3);
+    margin-bottom: calc(var(--u) * 3);
+  }
+
+
   .home-main {
     display: grid;
-    gap: var(--main-gap);
-    font-size: var(--main-font);
+    gap: calc(var(--u) * 1.6);
+    font-size: clamp(14px, 1.2vw, 18px);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    margin-bottom: calc(var(--u) * 8);
+    margin-bottom: calc(var(--u) * 4);
   }
 
   .home-bottom {
     display: flex;
     gap: var(--main-gap);
-    font-size: var(--bottom-font);
+    font-size: clamp(12px, 1vw, 14px);
     text-transform: lowercase;
     justify-content: center;
   }
@@ -153,6 +170,10 @@ const bottomLinks = [
       margin-bottom: 0;
     }
 
+    .home-subtitle {
+      margin-top: calc(var(--u) * -5);
+    }
+
     .eyes-background {
       display: block;
     }
@@ -162,5 +183,6 @@ const bottomLinks = [
     .home-bottom {
       flex-wrap: wrap;
     }
+
   }
 </style>

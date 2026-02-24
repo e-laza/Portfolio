@@ -1,11 +1,57 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContentList from '../../components/ContentList.astro';
-import { getCollection } from 'astro:content';
-
-const entries = await getCollection('writings');
 ---
 
 <BaseLayout title="Writings">
-  <ContentList title="Writings" entries={entries} basePath="/writings" />
+  <section class="list-page">
+    <ul>
+      <li>
+        <a href="/GedankenzurRepetitivitaet.pdf" target="_blank" rel="noreferrer">
+          Gedanken zur Repetitivität. Künstliche Intelligenz und die Frage nach Aura und der
+          Autorschaft <small>(pdf)</small>
+        </a>
+        <p>
+        This project explores artificial intelligence as part of a contemporary artistic practice through the concepts of seriality, authorship, and Walter Benjamin’s notion of aura. Based on a self-developed portrait series, a custom Style-LoRA was trained to investigate whether an individual visual language can be translated into algorithmic form without losing its distinctiveness. The work argues that authorship does not disappear in AI-generated art but shifts toward a process of selection, iteration, and art direction. In this context, Benjamin’s concept of aura is reconsidered: it emerges not from the uniqueness of a single image, but from the conscious shaping and understanding of the generative process.
+        </p>
+      </li>
+      <li>
+        <a href="/KrugerxBeckett.pdf" target="_blank" rel="noreferrer">
+          Der Zwang zu Sprechen: Diskurs, Subjekt und Sprachskepsis bei Kruger und Beckett. Eine
+          vergleichende Analyse <small>(pdf)</small>
+        </a>
+        <p>
+          This paper explores the relationship between language, power, and subjectivity in the works of Barbara Kruger and Samuel Beckett. Through a comparative analysis of Kruger’s text-image collages and Beckett’s novel <i>The Unnamable</i>, the study argues that subjectivity is not an autonomous inner essence but an effect produced by language. While Kruger exposes how ideological discourses externally interpellate the viewer through imperative slogans and pronouns, Beckett reveals the internalized dimension of this process in the fragmented, compulsive monologue of the nameless narrator. By juxtaposing Kruger’s external “You” with Beckett’s tormented “I,” the paper demonstrates how both artists articulate a modern condition in which the subject is constituted, constrained, and destabilized by linguistic structures. Together, their works present subjectivity as a site where language speaks before the subject can claim authorship.
+        </p>
+      </li>
+    </ul>
+  </section>
 </BaseLayout>
+
+<style>
+  .list-page {
+    max-width: 860px;
+    display: grid;
+    gap: calc(var(--u) * 2);
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .list-page ul {
+    list-style: none;
+    display: grid;
+    gap: calc(var(--u) * 3);
+    font-size: 20px;
+  }
+
+  .list-page a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.18em;
+  }
+
+  .list-page p {
+    opacity: 0.7;
+    margin-top: calc(var(--u) * 0.5);
+    font-size: 16px;
+  }
+</style>
