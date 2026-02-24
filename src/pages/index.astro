@@ -4,7 +4,7 @@ import LogoEye from '../components/LogoEye.astro';
 
 const mainLinks = [
   { label: 'About me', href: '/about' },
-  { label: 'Playing', href: '#' },
+  { label: 'Playing', href: 'https://codepen.io/ewal' },
   { label: 'Illustration', href: '/illustration' },
   { label: 'AI', href: '/ai' },
   { label: 'Writings', href: '/writings' },
@@ -26,7 +26,12 @@ const bottomLinks = [
       <nav class="home-main">
         {
           mainLinks.map((link) => (
-            <a class="home-link" href={link.href}>
+            <a
+              class="home-link"
+              href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
+            >
               {link.label}
             </a>
           ))
@@ -133,7 +138,7 @@ const bottomLinks = [
     text-underline-offset: 0.28em;
   }
 
-  @media (--bp-desktop) {
+  @media (min-width: 1024px) {
     .home-card {
       width: var(--card-size);
       aspect-ratio: 1 / 1;
