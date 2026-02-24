@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js';
 
 const CONFIG = {
   breakpoints: { desktopMinWidth: 1024 },
