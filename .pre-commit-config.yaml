@@ -14,7 +14,7 @@ repos:
       - id: check-yaml
       - id: check-json
       - id: check-added-large-files
-        args: ['--maxkb=512']
+        args: ['--maxkb=5000']
 
   -   repo: https://github.com/jorisroovers/gitlint
       rev:  v0.19.1
