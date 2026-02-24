@@ -3,12 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import LogoEye from '../components/LogoEye.astro';
 import eyesGridScript from '../scripts/eyes-grid.js?url';
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const mainLinks = [
-  { label: 'About me', href: '/about' },
+  { label: 'About me', href: `${baseUrl}about` },
   { label: 'Playing', href: 'https://codepen.io/ewal' },
-  { label: 'Illustration', href: '/illustration' },
-  { label: 'AI', href: '/ai' },
-  { label: 'Writings', href: '/writings' },
+  { label: 'Illustration', href: `${baseUrl}illustration` },
+  { label: 'AI', href: `${baseUrl}ai` },
+  { label: 'Writings', href: `${baseUrl}writings` },
 ];
 
 const bottomLinks = [
