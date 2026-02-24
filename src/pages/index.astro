@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LogoEye from '../components/LogoEye.astro';
+import eyesGridScript from '../scripts/eyes-grid.js?url';
 
 const mainLinks = [
   { label: 'About me', href: '/about' },
@@ -50,7 +51,7 @@ const bottomLinks = [
       </nav>
     </div>
   </section>
-  <script type="module" src="/src/scripts/eyes-grid.js"></script>
+  <script type="module" src={eyesGridScript}></script>
 </BaseLayout>
 
 <style>
