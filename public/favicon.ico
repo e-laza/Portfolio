@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101.25 100.253">
+  <g id="IRIS">
+    <ellipse cx="50.625" cy="50.126" rx="50.625" ry="50.126" fill="#f45b69"/>
+    <ellipse id="EYE_" cx="50.625" cy="50.126" rx="26.127" ry="25.869" fill="#032c75"/>
+    <ellipse id="EYE_Highligh" cx="58.176" cy="42.65" rx="7.551" ry="7.476" fill="#fff"/>
+  </g>
+</svg>
