@@ -2,13 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const artImages = [
+  '/art/stormtrooper.png',
   '/art/parasite.jpg',
   '/art/aneveningwalk.jpg',
   '/art/omgastone.png',
   '/art/pic4.jpg',
   '/art/pic5.jpg',
   '/art/pic6.png',
-  '/art/kruger1red.jpg',
+  '/art/tractor.gif',
 ];
 ---
 
@@ -36,6 +37,7 @@ const artImages = [
     justify-content: center;
   }
 
+
   .art-carousel {
     display: flex;
     gap: calc(var(--u) * 4);
@@ -46,6 +48,7 @@ const artImages = [
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
+    padding-right: calc(var(--u) * 2);
   }
 
   .art-carousel:focus {
@@ -66,6 +69,29 @@ const artImages = [
     width: 100%;
     display: block;
     object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .art-carousel {
+      gap: calc(var(--u) * 0.1);
+    }
+
+
+    .art-slide {
+      min-width: 70vw;
+    }
+
+    .art-carousel {
+      padding-right: 20vw;
+    }
+
+    .art-slide img {
+      width: auto;
+      max-width: 70vw;
+      height: auto;
+      max-height: 45vh;
+      object-fit: contain;
+    }
   }
 </style>
 
