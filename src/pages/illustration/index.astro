@@ -49,6 +49,7 @@ const artImages = [
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: none;
     padding-right: calc(var(--u) * 2);
+    touch-action: pan-x;
   }
 
   .art-carousel:focus {
@@ -72,6 +73,10 @@ const artImages = [
   }
 
   @media (max-width: 768px) {
+    :global(body) {
+      overflow: auto;
+    }
+
     .art-carousel {
       gap: calc(var(--u) * 0.1);
     }
@@ -99,9 +104,6 @@ const artImages = [
   const initCarouselScroll = () => {
     const carousel = document.querySelector('.art-carousel');
     if (!carousel) return;
-    carousel.setAttribute('tabindex', '0');
-    carousel.focus();
-
     const onWheel = (event) => {
       if (!(event instanceof WheelEvent)) return;
       if (event.deltaY === 0 && event.deltaX === 0) return;
@@ -114,9 +116,11 @@ const artImages = [
       carousel.scrollBy({ left: step * direction, behavior: 'smooth' });
     };
 
-    carousel.onwheel = onWheel;
-    carousel.addEventListener('wheel', onWheel, { passive: false });
-    document.addEventListener('wheel', onWheel, { passive: false, capture: true });
+    if (window.matchMedia('(min-width: 769px)').matches) {
+      carousel.onwheel = onWheel;
+      carousel.addEventListener('wheel', onWheel, { passive: false });
+      document.addEventListener('wheel', onWheel, { passive: false, capture: true });
+    }
   };
 
   if (document.readyState === 'loading') {
