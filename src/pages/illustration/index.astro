@@ -1,16 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const baseUrl = import.meta.env.BASE_URL;
 const artImages = [
-  'art/parasite.jpg',
-  'art/aneveningwalk.jpg',
-  'art/omgastone.png',
-  'art/pic4.jpg',
-  'art/pic5.jpg',
-  'art/pic6.png',
-  'art/kruger1red.jpg',
-].map((path) => `${baseUrl}${path}`);
+  '/art/parasite.jpg',
+  '/art/aneveningwalk.jpg',
+  '/art/omgastone.png',
+  '/art/pic4.jpg',
+  '/art/pic5.jpg',
+  '/art/pic6.png',
+  '/art/kruger1red.jpg',
+];
 ---
 
 <BaseLayout title="Illustration">

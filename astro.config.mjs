@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://e-laza.github.io',
-  base: '/Portfolio/',
+  site: 'https://ewalazar.com',
+  base: '/',
   output: 'static',
 });
