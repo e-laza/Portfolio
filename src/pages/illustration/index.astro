@@ -58,7 +58,6 @@ const artImages = [
 
   .art-slide {
     flex: 0 0 auto;
-    height: 100%;
     min-width: min(20vw, 240px);
     scroll-snap-align: start;
     display: grid;
@@ -79,11 +78,13 @@ const artImages = [
 
     .art-carousel {
       gap: calc(var(--u) * 0.1);
+      scroll-snap-type: x proximity;
     }
 
 
     .art-slide {
       min-width: 70vw;
+      height: auto;
     }
 
     .art-carousel {
